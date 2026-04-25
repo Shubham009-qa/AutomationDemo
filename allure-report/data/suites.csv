@@ -1,0 +1,5 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","6097","Add all element to the cart","","2026-04-25","passed","2026-04-25","","CartTest.spec.js","",""
+"","2516","Verify login with separate credentials","","2026-04-25","passed","2026-04-25","","Login.spec.js","",""
+"","2203","Verify login with valid credentials in compact version","","2026-04-25","passed","2026-04-25","","Login.spec.js","",""
+"","10064","Add indivisual product to the cart","","2026-04-25","passed","2026-04-25","","CartTest.spec.js","",""
