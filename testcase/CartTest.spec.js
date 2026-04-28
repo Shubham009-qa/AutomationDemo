@@ -11,7 +11,7 @@ test.beforeEach(async ( {page})=>{
      dash = new DashboardPage(page) 
 })
 
-test('Add individual product to the cart', async( {page} )=>{
+test('Add individual product to the cart @Regression', async( {page} )=>{
     await login.navigationToApplication()
     await login.loginIntoApplication()
     await dash.verifyLogoShouldVisible()
@@ -24,7 +24,7 @@ test('Add individual product to the cart', async( {page} )=>{
     await dash.isProductVisbileOnCartPage('iphone 13 pro') 
 })
 
-test('Add all element to the cart', async( {page} )=>{
+test('Add all element to the cart @Regression @Smoke', async( {page} )=>{
     await login.navigationToApplication()
     await login.loginIntoApplication()
     await dash.verifyLogoShouldVisible()

@@ -18,7 +18,7 @@ use:
     {
       browserName: 'chromium',
       viewport:{width:1500, height:1080},
-      //headless:false,
+      headless:false,
       screenshot:'only-on-failure',
       video:'retain-on-failure',
       trace:'retain-on-failure'
