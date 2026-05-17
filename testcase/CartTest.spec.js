@@ -1,7 +1,6 @@
-const { test, expect } = require('@playwright/test')
-import { DashboardPage } from '../pages/DashboardPage'
-import {LoginPage} from '../pages/LoginPage'
-import data from '../data/testData.json'
+import { test, expect } from '@playwright/test';
+import { DashboardPage } from '../pages/DashboardPage';
+import { LoginPage } from '../pages/LoginPage';
 
 let login
 let dash

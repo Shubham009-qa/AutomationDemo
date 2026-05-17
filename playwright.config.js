@@ -1,7 +1,8 @@
 // @ts-check
-import { defineConfig, devices } from '@playwright/test';
-require('dotenv').config()   //to use .env file we have to import
-//it loads your .env file into process.env before Playwright starts using it
+import { defineConfig } from '@playwright/test';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export default defineConfig({
   testDir: './testcase',

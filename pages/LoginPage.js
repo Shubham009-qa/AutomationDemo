@@ -1,4 +1,4 @@
-const { test, expect } = require('@playwright/test');
+import urls from '../utils/env.js'
 export class LoginPage {
     constructor(page) {
         this.page = page
@@ -10,7 +10,7 @@ export class LoginPage {
      * This methos is used to navigate to the application in given browser
      */
     async navigationToApplication() {
-        await this.page.goto(process.env.DEVURL)
+        await this.page.goto(urls)
     }
     /**
      * This method is used to enter username
@@ -48,4 +48,3 @@ export class LoginPage {
     }
 }
 
-//module.exports=LoginPage

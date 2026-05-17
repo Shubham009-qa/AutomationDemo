@@ -4,16 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "RunAllSmoke":"npx playwright test --grep @Smoke --headed",
-    "RunAllRegression":"npx playwright test --grep @Regression --headed",
-    "RunAllSanity":"npx playwright test --grep @Sanity --headed",
-    "RunAllTCHeaded":"npx playwright test  --headed",
-    "RunAllTestsHeadless":"npx playwright test"
+    "RunAllSmoke": "npx playwright test --grep @Smoke --headed",
+    "RunAllRegression": "npx playwright test --grep @Regression --headed",
+    "RunAllSanity": "npx playwright test --grep @Sanity --headed",
+    "RunAllTCHeaded": "npx playwright test  --headed",
+    "RunAllTestsHeadless": "npx playwright test",
+    "test:dev": "cross-env TEST_ENV=DEV npx playwright test",
+    "test:qa": "cross-env TEST_ENV=QA npx playwright test",
+    "test:prod": "cross-env TEST_ENV=PROD npx playwright test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "devDependencies": {
     "@playwright/test": "^1.59.1",
     "@types/node": "^25.6.0",
@@ -21,6 +24,7 @@
     "allure-playwright": "^3.7.1"
   },
   "dependencies": {
+    "cross-env": "^10.1.0",
     "dotenv": "^17.4.2"
   }
 }
