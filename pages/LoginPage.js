@@ -31,6 +31,9 @@ export class LoginPage {
         await this.page.click(this.loginButton)
     }
 
+    /**
+     * This method is used to login into the application
+     */
     async loginIntoApplication() {
         await this.page.locator(this.userNameField).fill("ssongade25@gmail.com")
         await this.page.locator(this.passwordField).fill("P@ssw0rd")
