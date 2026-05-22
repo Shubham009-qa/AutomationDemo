@@ -27,7 +27,7 @@ pipeline {
             steps {
 
                 git branch: 'master',
-                url: 'https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO.git'
+                url: 'https://github.com/Shubham009-qa/AutomationDemo.git'
 
             }
         }
