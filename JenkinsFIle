@@ -6,18 +6,19 @@ pipeline {
         nodejs 'NodeJS'
     }
 
-    parameters {
+    // parameters {
 
-        choice(
-            name: 'TEST_ENV',
-            choices: ['STAGE', 'UAT', 'PROD'],
-            description: 'Select Environment'
-        )
+    //     choice(
+    //         name: 'TEST_ENV',
+    //         choices: ['STAGE', 'UAT', 'PROD'],
+    //         description: 'Select Environment'
+    //     )
 
-    }
+    // }
 
     environment {
         CI = 'true'
+        TEST_ENV = 'STAGE'
     }
 
     stages {
