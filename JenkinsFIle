@@ -54,7 +54,11 @@ pipeline {
 
             steps {
 
-                bat "set TEST_ENV=%TEST_ENV% && npx playwright test"
+                bat '''
+                set TEST_ENV=STAGE
+                echo TEST_ENV=%TEST_ENV%
+                npx playwright test
+                '''
 
             }
         }

@@ -6,7 +6,9 @@ dotenv.config();
 
 export default defineConfig({
   testDir: './testcase',
-  reporter: [["line"], ["allure-playwright"]],
+  reporter: [['line'],
+            ['html', { open: 'never' }],
+            ['allure-playwright']],
   timeout:40000,
   expect:{
     timeout:10000
