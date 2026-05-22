@@ -9,8 +9,8 @@
     "RunAllSanity": "npx playwright test --grep @Sanity --headed",
     "RunAllTCHeaded": "npx playwright test  --headed",
     "RunAllTestsHeadless": "npx playwright test",
-    "test:dev": "cross-env TEST_ENV=DEV npx playwright test",
-    "test:qa": "cross-env TEST_ENV=QA npx playwright test",
+    "test:stage": "cross-env TEST_ENV=STAGE npx playwright test",
+    "test:uat": "cross-env TEST_ENV=UAT npx playwright test",
     "test:prod": "cross-env TEST_ENV=PROD npx playwright test"
   },
   "keywords": [],

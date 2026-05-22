@@ -1,0 +1,94 @@
+pipeline {
+
+    agent any
+
+    tools {
+        nodejs 'NodeJS'
+    }
+
+    parameters {
+
+        choice(
+            name: 'TEST_ENV',
+            choices: ['STAGE', 'UAT', 'PROD'],
+            description: 'Select Environment'
+        )
+
+    }
+
+    environment {
+        CI = 'true'
+    }
+
+    stages {
+
+        stage('Checkout Code') {
+
+            steps {
+
+                git branch: 'master',
+                url: 'https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO.git'
+
+            }
+        }
+
+        stage('Install Dependencies') {
+
+            steps {
+
+                bat 'npm install'
+
+            }
+        }
+
+        stage('Install Playwright Browsers') {
+
+            steps {
+
+                bat 'npx playwright install'
+
+            }
+        }
+
+        stage('Run Playwright Tests') {
+
+            steps {
+
+                bat "set TEST_ENV=%TEST_ENV% && npx playwright test"
+
+            }
+        }
+
+    }
+
+    post {
+
+        always {
+
+            publishHTML([
+                allowMissing: true,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'playwright-report',
+                reportFiles: 'index.html',
+                reportName: 'Playwright HTML Report'
+            ])
+
+            archiveArtifacts artifacts: 'allure-results/*', allowEmptyArchive: true
+
+        }
+
+        success {
+
+            echo 'Playwright execution completed successfully.'
+
+        }
+
+        failure {
+
+            echo 'Playwright execution failed.'
+
+        }
+    }
+
+}
