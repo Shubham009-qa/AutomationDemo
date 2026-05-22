@@ -85,7 +85,6 @@ pipeline {
 
         archiveArtifacts artifacts: 'playwright-report/**/*'
     }
-}
 
         success {
 
@@ -98,6 +97,6 @@ pipeline {
             echo 'Playwright execution failed.'
 
         }
-    }
+}
 
 }
