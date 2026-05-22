@@ -1,4 +1,4 @@
-const env = process.env.TEST_ENV || 'DEV';
+const env = process.env.TEST_ENV || 'STAGE';
 
 const urls = {
     STAGE: process.env.STAGEURL,
