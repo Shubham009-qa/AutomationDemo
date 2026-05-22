@@ -1,0 +1,65 @@
+/**
+ * Jenkinsfile for Playwright Test Automation
+ * This pipeline checks out the code, installs dependencies, runs tests, and generates reports.
+ */
+pipeline {
+
+    agent any
+
+    tools {
+        nodejs 'NodeJS'
+    }
+
+    environment {
+        TEST_ENV = 'UAT'
+        CI = 'true'
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                bat 'npm install'
+            }
+        }
+
+        stage('Install Browsers') {
+            steps {
+                bat 'npx playwright install'
+            }
+        }
+
+        stage('Run Regression') {
+            steps {
+                bat 'npx playwright test'
+            }
+        }
+    }
+
+    post {
+
+        always {
+
+            allure([
+                includeProperties: false,
+                jdk: '',
+                results: [[path: 'allure-results']]
+            ])
+
+            publishHTML(target: [
+                allowMissing: true,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'playwright-report',
+                reportFiles: 'index.html',
+                reportName: 'Playwright HTML Report'
+            ])
+        }
+    }
+}
