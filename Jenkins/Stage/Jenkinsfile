@@ -51,19 +51,101 @@ pipeline {
     post {
         always {
             allure([
-                includeProperties: false,
-                jdk: '',
-                results: [[path: 'allure-results']]
-            ])
+            includeProperties: false,
+            jdk: '',
+            results: [[path: 'allure-results']]
+        ])
 
             publishHTML(target: [
-                allowMissing: true,
-                alwaysLinkToLastBuild: true,
-                keepAll: true,
-                reportDir: 'playwright-report',
-                reportFiles: 'index.html',
-                reportName: 'Playwright HTML Report'
-            ])
+            allowMissing: true,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: 'playwright-report',
+            reportFiles: 'index.html',
+            reportName: 'Playwright HTML Report'
+        ])
+
+            archiveArtifacts artifacts: 'playwright-report/**/*'
+        }
+
+        success {
+            emailext(
+            subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+
+            body: """
+            <h2>Playwright Execution Successful</h2>
+
+            <p><b>Job:</b> ${env.JOB_NAME}</p>
+
+            <p><b>Build Number:</b> ${env.BUILD_NUMBER}</p>
+
+            <p><b>Status:</b> SUCCESS</p>
+
+            <hr>
+
+            <p>
+            <a href="${env.BUILD_URL}allure">
+            Open Allure Report
+            </a>
+            </p>
+
+            <p>
+            <a href="${env.BUILD_URL}Playwright_20HTML_20Report/">
+            Open Playwright HTML Report
+            </a>
+            </p>
+
+            <p>
+            <a href="${env.BUILD_URL}console">
+            Open Console Logs
+            </a>
+            </p>
+            """,
+
+            mimeType: 'text/html',
+
+            to: 'ssongade0@gmail.com'
+        )
+        }
+
+        failure {
+            emailext(
+            subject: "FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+
+            body: """
+            <h2>Playwright Execution Failed</h2>
+
+            <p><b>Job:</b> ${env.JOB_NAME}</p>
+
+            <p><b>Build Number:</b> ${env.BUILD_NUMBER}</p>
+
+            <p><b>Status:</b> FAILED</p>
+
+            <hr>
+
+            <p>
+            <a href="${env.BUILD_URL}allure">
+            Open Allure Report
+            </a>
+            </p>
+
+            <p>
+            <a href="${env.BUILD_URL}Playwright_20HTML_20Report/">
+            Open Playwright HTML Report
+            </a>
+            </p>
+
+            <p>
+            <a href="${env.BUILD_URL}console">
+            Open Console Logs
+            </a>
+            </p>
+            """,
+
+            mimeType: 'text/html',
+
+            to: 'ssongade0@gmail.com'
+        )
         }
     }
 }
