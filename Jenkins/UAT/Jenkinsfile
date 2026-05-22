@@ -3,7 +3,6 @@
  * This pipeline checks out the code, installs dependencies, runs tests, and generates reports.
  */
 pipeline {
-
     agent any
 
     tools {
@@ -16,6 +15,13 @@ pipeline {
     }
 
     stages {
+        stage('Clean Reports') {
+            steps {
+                bat 'if exist allure-results rmdir /s /q allure-results'
+                bat 'if exist allure-report rmdir /s /q allure-report'
+                bat 'if exist playwright-report rmdir /s /q playwright-report'
+            }
+        }
 
         stage('Checkout') {
             steps {
@@ -43,9 +49,7 @@ pipeline {
     }
 
     post {
-
         always {
-
             allure([
                 includeProperties: false,
                 jdk: '',
