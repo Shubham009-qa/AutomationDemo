@@ -66,21 +66,26 @@ pipeline {
     }
 
     post {
+    always {
 
-        always {
+        allure([
+            includeProperties: false,
+            jdk: '',
+            results: [[path: 'allure-results']]
+        ])
 
-            publishHTML([
-                allowMissing: true,
-                alwaysLinkToLastBuild: true,
-                keepAll: true,
-                reportDir: 'playwright-report',
-                reportFiles: 'index.html',
-                reportName: 'Playwright HTML Report'
-            ])
+        publishHTML(target: [
+            allowMissing: true,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: 'playwright-report',
+            reportFiles: 'index.html',
+            reportName: 'Playwright HTML Report'
+        ])
 
-            archiveArtifacts artifacts: 'allure-results/*', allowEmptyArchive: true
-
-        }
+        archiveArtifacts artifacts: 'playwright-report/**/*'
+    }
+}
 
         success {
 
